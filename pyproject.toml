@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "instaproapi"
+version = "1.0.1"
+description = ""
+authors = ["bubled33"]
+[tool.poetry.dependencies]
+python = "^3.11"
+loguru = "^0.7.0"
+aiohttp = "^3.8.4"
+pydantic = "^1.10.7"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
