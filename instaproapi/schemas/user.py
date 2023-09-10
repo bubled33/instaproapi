@@ -10,7 +10,7 @@ from instaproapi.schemas.server_types import ActionTypes
 
 class Subscribe(BaseModel):
     action_type: ActionTypes
-    account_id: str
+    account_id: str | None = None
     subscribe_date: datetime
 
 

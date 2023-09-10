@@ -39,6 +39,7 @@ class UsersTypes(str, Enum):
 
 class ActionTypes(str, Enum):
     watch_stories = 'WATCH_STORIES'
+    generate_posts = 'GENERATE_POSTS'
     login = 'LOGIN'
     incomplete_analysis = 'INCOMPLETE_ANALYSIS'
     complete_analysis = 'COMPLETE_ANALYSIS'

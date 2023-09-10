@@ -61,7 +61,7 @@ class InstaproAPI:
     """
 
     @retry_async(3)
-    async def get_subscribe_date(self, instance_id: str, account_id: str, action_type: ActionTypes) -> datetime | None:
+    async def get_subscribe_date(self, instance_id: str, action_type: ActionTypes, account_id: str | None = None) -> datetime | None:
         user = await self.get_user(instance_id)
         for subscribe in user.subscribes:
             if subscribe.account_id == account_id and subscribe.action_type == action_type:
@@ -69,7 +69,7 @@ class InstaproAPI:
         return None
 
     @retry_async(3)
-    async def subscribe(self, instance_id: str, account_id: str, action_type: ActionTypes, days: int):
+    async def subscribe(self, instance_id: str, action_type: ActionTypes, days: int, account_id: str | None = None):
         response = await self._client_session.post(
             self.base_url.format(method=f'/api/users/subscribe'),
             json={'instance_id': instance_id, 'action_type': action_type,
