@@ -13,6 +13,7 @@ from loguru import logger
 
 from .schemas.account import OutAccount
 from .schemas.action import OutAction
+from .schemas.fake import OutFake
 from .schemas.proxy import OutProxy
 from .schemas.server_types import ActionStatuses, ActionTypes
 from .schemas.sub_server import OutSubServer
@@ -56,6 +57,46 @@ class InstaproAPI:
 
         return decorator
 
+    """
+    Фейки
+    """
+
+    @retry_async(3)
+    async def create_fake(self, instance_id) -> OutFake:
+        response = await self._client_session.post(
+            self.base_url.format(method=f'/api/fakes/create'),
+            json={'instance_id': instance_id})
+        logger.info(await response.json())
+        return OutFake(**await response.json())
+
+    @retry_async(3)
+    async def delete_fake(self, instance_id):
+        await self._client_session.post(
+            self.base_url.format(method=f'/api/fakes/delete'),
+            json={'instance_id': instance_id})
+
+    @retry_async(3)
+    async def subscribe_fake(self, instance_id: str, days: int):
+        await self._client_session.post(
+            self.base_url.format(method=f'/api/fakes/subscribe'),
+            json={'instance_data': {'instance_id': instance_id}, 'subscribe_data': {'days': days}})
+
+    @retry_async(3)
+    async def update_fake(self, instance_id: str, username: str | None = None, description: str | None = None):
+        await self._client_session.post(
+            self.base_url.format(method=f'/api/fakes/update'),
+            json={'instance_data': {'instance_id': instance_id}, 'update_data': {'username': username, 'description': description}})
+
+    @retry_async(3)
+    async def get_fake(self, instance_id):
+        response = await self._client_session.post(
+            self.base_url.format(method=f'/api/fakes/get'),
+            json={'instance_id': instance_id})
+        response_data = await response.json()
+        return OutFake(**response_data)
+
+    async def get_fakes(self, instance_ids: List[str]) -> List[OutFake]:
+        return [await self.get_fake(instance_id) for instance_id in instance_ids]
     """
     Пользователи
     """
