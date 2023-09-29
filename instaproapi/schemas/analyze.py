@@ -4,10 +4,11 @@ from pydantic import BaseModel
 
 
 class InAnalyze(BaseModel):
-    id: str
     username: str
 
 class OutAnalyze(BaseModel):
+
+    id: str
     username: str
     data: Dict[str, List[str]]
     user_id: str
