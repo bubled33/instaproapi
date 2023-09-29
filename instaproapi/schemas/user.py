@@ -24,3 +24,4 @@ class OutUser(BaseModel):
     accounts_ids: List[str] = []
     subscribes: List[Subscribe] = []
     fakes: List[str] = []
+    analyzes: List[str] = []

@@ -13,6 +13,7 @@ from loguru import logger
 
 from .schemas.account import OutAccount
 from .schemas.action import OutAction
+from .schemas.analyze import OutAnalyze
 from .schemas.fake import OutFake
 from .schemas.proxy import OutProxy
 from .schemas.server_types import ActionStatuses, ActionTypes
@@ -85,7 +86,8 @@ class InstaproAPI:
     async def update_fake(self, instance_id: str, username: str | None = None, description: str | None = None):
         await self._client_session.post(
             self.base_url.format(method=f'/api/fakes/update'),
-            json={'instance_data': {'instance_id': instance_id}, 'update_data': {'username': username, 'description': description}})
+            json={'instance_data': {'instance_id': instance_id},
+                  'update_data': {'username': username, 'description': description}})
 
     @retry_async(3)
     async def get_fake(self, instance_id):
@@ -97,12 +99,14 @@ class InstaproAPI:
 
     async def get_fakes(self, instance_ids: List[str]) -> List[OutFake]:
         return [await self.get_fake(instance_id) for instance_id in instance_ids]
+
     """
     Пользователи
     """
 
     @retry_async(3)
-    async def get_subscribe_date(self, instance_id: str, action_type: ActionTypes, account_id: str | None = None) -> datetime | None:
+    async def get_subscribe_date(self, instance_id: str, action_type: ActionTypes,
+                                 account_id: str | None = None) -> datetime | None:
         user = await self.get_user(instance_id)
         for subscribe in user.subscribes:
             if subscribe.account_id == account_id and subscribe.action_type == action_type:
@@ -151,12 +155,45 @@ class InstaproAPI:
         await self._client_session.post(
             self.base_url.format(method=f'/api/users/delete'), json={'instance_id': instance_id})
 
+    """"
+    Анализ
+    """
+
+    @retry_async(3)
+    async def create_analyze(self, user_id: str, username: str) -> OutAnalyze:
+        response = await self._client_session.post(
+            self.base_url.format(method=f'/api/analyze/create'),
+            json={'instance_data': {'username': username}, 'user_data': {'instance_id': user_id}})
+        return OutAnalyze(**await response.json())
+
+    @retry_async(3)
+    async def update_analyze(self, instance_id: str, key: str, values: List[str]) -> OutAnalyze:
+        await self._client_session.post(
+            self.base_url.format(method=f'/api/analyze/update'),
+            json={'instance_data': {'instance_id': instance_id}, 'update_analyze': {'key': key,
+                                                                                    'values': values}})
+
+    @retry_async(3)
+    async def subscribe_analyze(self, instance_id: str):
+        await self._client_session.post(
+            self.base_url.format(method=f'/api/analyze/subscribe'),
+            json={'instance_data': {'instance_id': instance_id}})
+
+    @retry_async(3)
+    async def get_analyze(self, instance_id: str):
+        response = await self._client_session.post(
+            self.base_url.format(method=f'/api/analyze/get'),
+            json={'instance_data': {'instance_id': instance_id}})
+
+        return OutAnalyze(**await response.json())
+
     """
     Акаунты
     """
 
     @retry_async(3)
-    async def update_account(self, instance_id: str, username: str | None = None, password: str | None = None, description: str | None = None):
+    async def update_account(self, instance_id: str, username: str | None = None, password: str | None = None,
+                             description: str | None = None):
         await self._client_session.post(self.base_url.format(method=f'/api/accounts/update'),
                                         json={'instance_id': instance_id, 'username': username, 'password': password,
                                               'description': description})
