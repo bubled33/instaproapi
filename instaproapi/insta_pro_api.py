@@ -177,13 +177,13 @@ class InstaproAPI:
     async def subscribe_analyze(self, instance_id: str):
         await self._client_session.post(
             self.base_url.format(method=f'/api/analyze/subscribe'),
-            json={'instance_data': {'instance_id': instance_id}})
+            json={'instance_id': instance_id})
 
     @retry_async(3)
     async def get_analyze(self, instance_id: str):
         response = await self._client_session.post(
             self.base_url.format(method=f'/api/analyze/get'),
-            json={'instance_data': {'instance_id': instance_id}})
+            json={'instance_id': instance_id})
 
         return OutAnalyze(**await response.json())
 
