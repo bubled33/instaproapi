@@ -4,6 +4,7 @@ from pydantic import BaseModel
 
 
 class InAnalyze(BaseModel):
+    id: str
     username: str
 
 class OutAnalyze(BaseModel):
