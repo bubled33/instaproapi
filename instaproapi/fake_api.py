@@ -12,7 +12,7 @@ from loguru import logger
 from .schemas.fake import InstanceTypes
 
 
-class InstaproAPI:
+class FakeAPI:
     def __init__(self, host: str, port: int):
         self._host = host
         self._port = port
