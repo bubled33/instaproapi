@@ -91,14 +91,19 @@ class InstaproAPI:
 
     @retry_async(3)
     async def get_fake(self, instance_id):
-        response = await self._client_session.post(
-            self.base_url.format(method=f'/api/fakes/get'),
-            json={'instance_id': instance_id})
-        response_data = await response.json()
-        return OutFake(**response_data)
+        try:
+            response = await self._client_session.post(
+                self.base_url.format(method=f'/api/fakes/get'),
+                json={'instance_id': instance_id})
+            response_data = await response.json()
+            if not response_data:
+                return None
+            return OutFake(**response_data)
+        except ContentTypeError:
+            return None
 
     async def get_fakes(self, instance_ids: List[str]) -> List[OutFake]:
-        return [await self.get_fake(instance_id) for instance_id in instance_ids]
+        return [fake for fake in [await self.get_fake(instance_id) for instance_id in instance_ids] if fake is not None]
 
     """
     Пользователи
@@ -140,9 +145,16 @@ class InstaproAPI:
 
     @retry_async(3)
     async def get_user(self, instance_id: str) -> OutUser:
-        response = await self._client_session.post(
-            self.base_url.format(method=f'/api/users/get?instance_id={instance_id}'), json={'instance_id': instance_id})
-        return OutUser(**await response.json())
+        try:
+            response = await self._client_session.post(
+                self.base_url.format(method=f'/api/users/get?instance_id={instance_id}'), json={'instance_id': instance_id})
+            response_data = await response.json()
+            if response_data:
+                return OutUser(**response_data)
+            else:
+                return None
+        except ContentTypeError:
+            return None
 
     @retry_async(3)
     async def get_all(self) -> List[OutUser]:
@@ -181,11 +193,17 @@ class InstaproAPI:
 
     @retry_async(3)
     async def get_analyze(self, instance_id: str):
-        response = await self._client_session.post(
-            self.base_url.format(method=f'/api/analyze/get'),
-            json={'instance_id': instance_id})
-
-        return OutAnalyze(**await response.json())
+        try:
+            response = await self._client_session.post(
+                self.base_url.format(method=f'/api/analyze/get'),
+                json={'instance_id': instance_id})
+            response_data = await response.json()
+            if response_data:
+                return OutAnalyze(**response_data)
+            else:
+                return None
+        except ContentTypeError:
+            return None
 
     """
     Акаунты
@@ -231,12 +249,15 @@ class InstaproAPI:
 
     @retry_async(3)
     async def get_account(self, instance_id: str) -> OutAccount | None:
-        response = await self._client_session.post(
-            self.base_url.format(method=f'/api/accounts/get'), json={'instance_id': instance_id})
-        data = await response.json()
-        if not data:
+        try:
+            response = await self._client_session.post(
+                self.base_url.format(method=f'/api/accounts/get'), json={'instance_id': instance_id})
+            data = await response.json()
+            if not data:
+                return None
+            return OutAccount(**await response.json())
+        except ContentTypeError:
             return None
-        return OutAccount(**await response.json())
 
     """
     Действия
@@ -272,11 +293,16 @@ class InstaproAPI:
 
     @retry_async(3)
     async def get_action(self, instance_id: str) -> OutAction:
-        response = await self._client_session.post(
-            self.base_url.format(method=f'/api/actions/get'), json={'instance_id': instance_id}
-        )
-        return OutAction(**await response.json())
-
+        try:
+            response = await self._client_session.post(
+                self.base_url.format(method=f'/api/actions/get'), json={'instance_id': instance_id}
+            )
+            response_data = await response.json()
+            if not response_data:
+                return None
+            return OutAction(**response_data)
+        except ContentTypeError:
+            return None
     @retry_async(3)
     async def get_all_action_by_account(self, instance_id: str) -> List[OutAction]:
         response = await self._client_session.post(
@@ -451,7 +477,9 @@ class InstaproAPI:
     async def get_accounts(self, instances_ids: List[str]) -> List[OutAccount]:
         result = []
         for instance_id in instances_ids:
-            result.append(await self.get_account(instance_id))
+            account = await self.get_account(instance_id)
+            if account:
+                result.append(account)
 
         return result
 
@@ -459,6 +487,8 @@ class InstaproAPI:
     async def get_actions(self, instances_ids: List[str]) -> List[OutAction]:
         result = []
         for instance_id in instances_ids:
-            result.append(await self.get_action(instance_id))
+            action = await self.get_action(instance_id)
+            if action:
+                result.append(action)
 
         return result
