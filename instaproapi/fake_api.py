@@ -57,14 +57,14 @@ class FakeAPI:
         if last_max_id:
             params['last_max_id'] = last_max_id
         response = await self._client_session.post(
-            self.base_url.format(method=f'/api/fakes/delete'),
+            self.base_url.format(method=f'/api/analyze/analyze'),
             params=params)
         return await response.json()
 
     @retry_async(3)
     async def unfollow(self, action_id: str, instance: str) -> Dict[str, str]:
         response = await self._client_session.post(
-            self.base_url.format(method=f'/api/fakes/delete'),
+            self.base_url.format(method=f'/api/analyze/unfollow'),
             params={'action_id': action_id, 'instance': instance})
         return await response.json()
 
