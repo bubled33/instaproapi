@@ -53,9 +53,12 @@ class FakeAPI:
 
     @retry_async(3)
     async def analyze(self, instance: str, last_max_id: str | None) -> Dict[str, str]:
+        params = {'instance': instance}
+        if last_max_id:
+            params['last_max_id'] = last_max_id
         response = await self._client_session.post(
             self.base_url.format(method=f'/api/fakes/delete'),
-            params={'instance': instance, 'last_max_id': last_max_id})
+            params=params)
         return await response.json()
 
     @retry_async(3)
