@@ -83,11 +83,11 @@ class InstaproAPI:
             json={'instance_data': {'instance_id': instance_id}, 'subscribe_data': {'days': days}})
 
     @retry_async(3)
-    async def update_fake(self, instance_id: str, username: str | None = None, description: str | None = None):
+    async def update_fake(self, instance_id: str, username: str | None = None, description: str | None = None, **kwargs):
         await self._client_session.post(
             self.base_url.format(method=f'/api/fakes/update'),
             json={'instance_data': {'instance_id': instance_id},
-                  'update_data': {'username': username, 'description': description}})
+                  'update_data': {'username': username, 'description': description, 'other_data': kwargs}})
 
     @retry_async(3)
     async def get_fake(self, instance_id):
