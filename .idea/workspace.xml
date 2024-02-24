@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c32fcc24-590b-4b1d-9f12-47bf99cc63fb" name="Changes" comment="Функционал анализа">
+    <list default="true" id="c32fcc24-590b-4b1d-9f12-47bf99cc63fb" name="Changes" comment="Pydantic version up">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,7 +229,23 @@
       <option name="project" value="LOCAL" />
       <updated>1696603071684</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Функционал анализа">
+      <option name="closed" value="true" />
+      <created>1708723212718</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1708723212718</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Pydantic version up">
+      <option name="closed" value="true" />
+      <created>1708723302228</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1708723302228</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,6 +254,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Функционал подписки на генерацию" />
     <MESSAGE value="Функционал анализа" />
-    <option name="LAST_COMMIT_MESSAGE" value="Функционал анализа" />
+    <MESSAGE value="Pydantic version up" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pydantic version up" />
   </component>
 </project>
