@@ -29,7 +29,7 @@ class OutAction(BaseModel):
         header = f'<b>Действие</b>\n' \
                  f'<b>Тип: </b><code>{ActionTypes.get_title(self.action_type)}</code>\n' \
                  f'<b>Статус: </b><code>{ActionStatuses.get_title(self.status)}</code>\n' \
-                 f'<b>Оплачено до: </b> <code>{subscribe_date.strftime("%m.%d.%Y") or "Не оплачено"}</code>\n'
+                 f'<b>Оплачено до: </b> <code>{subscribe_date.strftime("%m.%d.%Y") if subscribe_date else "Не оплачено"}</code>\n'
         content = None
         if self.action_type == ActionTypes.watch_stories:
             content = ''
