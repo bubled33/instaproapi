@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c32fcc24-590b-4b1d-9f12-47bf99cc63fb" name="Changes" comment="Pydantic version up">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/instaproapi/insta_pro_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/instaproapi/insta_pro_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/instaproapi/schemas/action.py" beforeDir="false" afterPath="$PROJECT_DIR$/instaproapi/schemas/action.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -252,7 +252,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708769372253</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Pydantic version up">
+      <option name="closed" value="true" />
+      <created>1709572764071</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1709572764071</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
