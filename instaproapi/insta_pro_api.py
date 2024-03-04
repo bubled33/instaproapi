@@ -114,6 +114,12 @@ class InstaproAPI:
                                  account_id: str | None = None) -> datetime | None:
         user = await self.get_user(instance_id)
         for subscribe in user.subscribes:
+            logger.info('---Start Debug---')
+            logger.info(subscribe.account_id)
+            logger.info(account_id)
+            logger.info(subscribe.action_type)
+            logger.info(action_type)
+            logger.info('End debug')
             if subscribe.account_id == account_id and subscribe.action_type == action_type:
                 return subscribe.subscribe_date
         return None
