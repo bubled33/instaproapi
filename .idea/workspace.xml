@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c32fcc24-590b-4b1d-9f12-47bf99cc63fb" name="Changes" comment="Pydantic version up">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/instaproapi/schemas/action.py" beforeDir="false" afterPath="$PROJECT_DIR$/instaproapi/schemas/action.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +40,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/zimni/PycharmProjects/juridical_bot&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/zimni/PycharmProjects/DefNull8&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -260,7 +260,23 @@
       <option name="project" value="LOCAL" />
       <updated>1709572764071</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Pydantic version up">
+      <option name="closed" value="true" />
+      <created>1709573801359</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1709573801359</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Pydantic version up">
+      <option name="closed" value="true" />
+      <created>1709573833942</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1709573833942</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
