@@ -1,5 +1,3 @@
-#
-
 from __future__ import annotations
 
 import asyncio
@@ -264,6 +262,17 @@ class InstaproAPI:
             return OutAccount(**await response.json())
         except ContentTypeError:
             return None
+
+    @retry_async(3)
+    async def get_payments_method(self) -> str:
+        response = await self._client_session.post(
+            self.base_url.format(method=f'/api/users/get_payments'))
+        return (await response.json)['payments_id']
+
+    @retry_async(3)
+    async def update_payments_method(self, instance_id: str, payments_id: str):
+        await self._client_session.post(
+            self.base_url.format(method=f'/api/users/update_payments'), json={'instance_id': instance_id, 'payments_id': payments_id})
 
     """
     Действия
